@@ -1,0 +1,88 @@
+.auto-parts-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+  justify-items: center;
+  margin-top: 50px;
+}
+
+.auto-part-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  height: 6.5cm;
+  padding: 10px;
+  border: 3px solid #ccc;
+  border-radius: 25px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.auto-part-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+
+.auto-part-card h3 {
+  font-size: 14px;
+  margin: 5px 0;
+  max-height: 60px; /* Limite de altura para texto largo */
+  overflow-wrap: break-word; /* Permite que las palabras largas se ajusten */
+  text-align: center;
+}
+
+.select-checkbox {
+  transform: scale(1.5);
+  margin-top: auto;
+  margin-bottom: 1px
+
+}
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.category-select {
+  display: block;
+  margin: 20px auto;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  max-width: 300px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.pagination {
+  display: flex;
+  justify-content: center; 
+  margin: 20px 0;
+}
+
+.pagination button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #555;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
