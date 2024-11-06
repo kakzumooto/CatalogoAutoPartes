@@ -1,27 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import CategorySelector from './CategorySelector';
-import AutoPartList from './AutoPartList';
+import Inicio from './Inicio';
+import Catalogo from './Catalogo';
+import Presupuesto from './Presupuesto';
+import Contactanos from './Contactanos';
 import './App.css';
 
 function App() {
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const categories = [
-    "BARRAS TRANSVERSALES",
-    "CAJA DE HERRAMIENTAS",
-    "CANASTILLAS",
-    "EXTENSION DE CAJA",
-    "FOCOS LED",
-    "OTROS",
-    "OTROS SOPORTES",
-    "PORTA BICICLETA",
-    "PORTA EQUIPAJE",
-    "TAPA RIGIDA"
-  ];
+  const [currentSection, setCurrentSection] = useState('inicio');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const section = window.location.hash.slice(1) || 'inicio';
+      setCurrentSection(section);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange();
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  const renderSection = () => {
+    switch (currentSection) {
+      case 'inicio':
+        return <Inicio />;
+      case 'catalogo':
+        return <Catalogo />;
+      case 'presupuesto':
+        return <Presupuesto />;
+      case 'contactanos':
+        return <Contactanos />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="App">
-      <CategorySelector categories={categories} onSelectCategory={setSelectedCategory} />
-      {selectedCategory && <AutoPartList selectedCategory={selectedCategory} />}
+      <header>
+        <nav>
+          <ul className="header-menu">
+            <li><a href="#inicio" onClick={() => setCurrentSection('inicio')}>Inicio</a></li>
+            <li><a href="#catalogo" onClick={() => setCurrentSection('catalogo')}>Catálogo</a></li>
+            <li><a href="#presupuesto" onClick={() => setCurrentSection('presupuesto')}>Presupuesto</a></li>
+            <li><a href="#contactanos" onClick={() => setCurrentSection('contactanos')}>Contáctanos</a></li>
+          </ul>
+        </nav>
+      </header>
+      {renderSection()}
     </div>
   );
 }
