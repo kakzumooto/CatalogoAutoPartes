@@ -65,7 +65,7 @@
 }
 
 button, .pagination button {
-  background-color: #0B4F61; /* Matches header/footer */
+  background-color: #0B4F61;
   color: #ffffff;
   border: none;
   padding: 10px 15px;
@@ -76,12 +76,22 @@ button, .pagination button {
 }
 
 button:hover, .pagination button:hover {
-  background-color: #083c4a; /* Darker shade for hover effect */
+  background-color: #083c4a;
 }
 
 .pagination button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+@media (max-width: 768px) {
+  .auto-parts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .auto-part-card {
+    max-width: 100%;
+    padding: 10px;
+  }
 }
 
 

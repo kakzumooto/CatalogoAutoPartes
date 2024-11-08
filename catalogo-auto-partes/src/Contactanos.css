@@ -1,0 +1,37 @@
+.contactanos-container {
+  text-align: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contactanos-message {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.whatsapp-button {
+  display: inline-block;
+  background-color: #25D366;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe5b;
+}
+
+@media (max-width: 768px) {
+  .contactanos-message {
+    font-size: 14px;
+  }
+
+  .whatsapp-button {
+    padding: 8px 16px;
+  }
+}

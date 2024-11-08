@@ -9,7 +9,7 @@ header {
   background-color: #0B4F61;
   color: #fff;
   text-align: center;
-  padding: 1px 0;  /* checar medidas */
+  padding: 1px 0;
   margin: 0;
   width: 100%;
 }
@@ -50,7 +50,7 @@ footer {
   padding: 10px 0;
   width: 100%;
   margin: 0 ;
-  font-size: 14px;
+  font-size: 22px;
   position: relative;
 }
 
@@ -71,4 +71,47 @@ header, footer {
   padding: 0;
   margin: 0;
   width: 100%;
+}
+.menu-toggle {
+  display: none;
+}
+@media (max-width: 768px) {
+  .header-menu {
+       display: none;
+       flex-direction: column;
+       gap: 20px;
+       background-color: #0B4F61;
+       position: absolute;
+       top: 50px;
+       left: 0;
+       right: 0;
+       padding: 20px 0;
+       z-index: 1000;
+     }
+
+    .menu-toggle {
+        display: block;
+        color: #0B4F61;
+        font-size: 24px;
+        cursor: pointer;
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 2000;
+      }
+  .header-menu.active {
+      display: flex;
+    }
+
+  footer p {
+    font-size: 12px;
+  }
+
+   .auto-parts-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+  button, .pagination button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
 }

@@ -7,11 +7,13 @@ import './App.css';
 
 function App() {
   const [currentSection, setCurrentSection] = useState('inicio');
+  const [menuActive, setMenuActive] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
       const section = window.location.hash.slice(1) || 'inicio';
       setCurrentSection(section);
+      setMenuActive(false);
     };
     window.addEventListener('hashchange', handleHashChange);
     handleHashChange();
@@ -20,6 +22,9 @@ function App() {
       window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
+  const toggleMenu = () => {
+      setMenuActive(!menuActive);
+    };
 
   const renderSection = () => {
     switch (currentSection) {
@@ -40,7 +45,8 @@ function App() {
     <div className="App">
       <header>
         <nav>
-          <ul className="header-menu">
+        <span className="menu-toggle" onClick={toggleMenu}>☰</span>
+          <ul className={`header-menu ${menuActive ? 'active' : ''}`}>
             <li><a href="#inicio" onClick={() => setCurrentSection('inicio')}>Inicio</a></li>
             <li><a href="#catalogo" onClick={() => setCurrentSection('catalogo')}>Catálogo</a></li>
             <li><a href="#presupuesto" onClick={() => setCurrentSection('presupuesto')}>Presupuesto</a></li>
