@@ -45,12 +45,7 @@ function AutoPartList({ selectedCategory }) {
           <div key={autoPart.id} className="auto-part-card">
             <img src={`data:image/jpeg;base64,${autoPart.imagen}`} alt={autoPart.nombre_original} />
             <h3>{autoPart.nombre_original}</h3>
-            <input
-              type="checkbox"
-              className="select-checkbox"
-              checked={selectedItems.includes(autoPart.id)}
-              onChange={() => handleCheckboxChange(autoPart.id)}
-            />
+
           </div>
         ))}
       </div>

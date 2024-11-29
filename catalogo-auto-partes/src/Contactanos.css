@@ -3,10 +3,40 @@
   padding: 20px;
   max-width: 600px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Estilo general para el texto */
+#texto-resaltado {
+    font-size: 20px;
+    color: #333;
+}
+
+/* Cambia el color y crea una animación */
+#texto-resaltado span {
+    color: #0066cc; /* Color inicial */
+    font-weight: bold;
+    animation: colorCambio 2s infinite; /* Animación infinita */
+}
+
+/* Definición de la animación */
+@keyframes colorCambio {
+    0% { color: #0066cc; } /* Color inicial */
+    50% { color: #ff6600; } /* Color intermedio */
+    100% { color: #0066cc; } /* Vuelve al color inicial */
+}
+
+
+.contactanos-image {
+  width: 100%;
+  max-width: 200px; /* Ajusta el tamaño máximo según tu preferencia */
+  margin-bottom: 20px;
 }
 
 .contactanos-message {
-  font-size: 16px;
+  font-size: 22px;
+
   color: #333;
   margin-bottom: 20px;
   line-height: 1.5;
@@ -33,5 +63,9 @@
 
   .whatsapp-button {
     padding: 8px 16px;
+  }
+
+  .contactanos-image {
+    max-width: 150px; /* Reduce el tamaño de la imagen en pantallas pequeñas */
   }
 }

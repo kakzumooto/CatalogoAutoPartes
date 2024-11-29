@@ -1,5 +1,5 @@
 import React from 'react';
-import fondo from './fondo.jpg';
+import fondo from './Performance day 2.jpg';
 import './Inicio.css';
 
 function Inicio() {

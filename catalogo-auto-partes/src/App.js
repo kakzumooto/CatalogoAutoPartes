@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Inicio from './Inicio';
 import Catalogo from './Catalogo';
-import Presupuesto from './Presupuesto';
+import Ubicacion from './Ubicacion';
 import Contactanos from './Contactanos';
 import './App.css';
 
@@ -32,8 +32,8 @@ function App() {
         return <Inicio />;
       case 'catalogo':
         return <Catalogo />;
-      case 'presupuesto':
-        return <Presupuesto />;
+      case 'ubicacion':
+        return <Ubicacion />;
       case 'contactanos':
         return <Contactanos />;
       default:
@@ -49,7 +49,7 @@ function App() {
           <ul className={`header-menu ${menuActive ? 'active' : ''}`}>
             <li><a href="#inicio" onClick={() => setCurrentSection('inicio')}>Inicio</a></li>
             <li><a href="#catalogo" onClick={() => setCurrentSection('catalogo')}>Catálogo</a></li>
-            <li><a href="#presupuesto" onClick={() => setCurrentSection('presupuesto')}>Presupuesto</a></li>
+            <li><a href="#ubicacion" onClick={() => setCurrentSection('ubicacion')}>Ubicación</a></li>
             <li><a href="#contactanos" onClick={() => setCurrentSection('contactanos')}>Contáctanos</a></li>
           </ul>
         </nav>
