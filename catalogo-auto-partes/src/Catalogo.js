@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CategorySelector from './CategorySelector';
 import AutoPartList from './AutoPartList';
 
 function Catalogo() {
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
 
   const categories = [
     "ACCESORIOS JIMNY",
@@ -34,10 +35,43 @@ function Catalogo() {
     "TUMBABURROS"
   ];
 
+  useEffect(() => {
+    const storedCategory = localStorage.getItem('selectedCategory');
+    const storedPage = localStorage.getItem('selectedPage');
+    if (storedCategory) {
+      setSelectedCategory(storedCategory);
+    }
+    if (storedPage) {
+      setCurrentPage(parseInt(storedPage, 10));
+    }
+  }, []);
+
+  const handleSelectCategory = (category) => {
+    setSelectedCategory(category);
+    setCurrentPage(0);
+    localStorage.setItem('selectedCategory', category);
+    localStorage.setItem('selectedPage', 0);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    localStorage.setItem('selectedPage', page);
+  };
+
   return (
     <div className="catalogo-section">
-      <CategorySelector categories={categories} onSelectCategory={setSelectedCategory} />
-      {selectedCategory && <AutoPartList selectedCategory={selectedCategory} />}
+      <CategorySelector
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onSelectCategory={handleSelectCategory}
+      />
+      {selectedCategory && (
+        <AutoPartList
+          selectedCategory={selectedCategory}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 }

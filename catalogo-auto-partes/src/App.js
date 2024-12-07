@@ -22,9 +22,10 @@ function App() {
       window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
+
   const toggleMenu = () => {
-      setMenuActive(!menuActive);
-    };
+    setMenuActive(!menuActive);
+  };
 
   const renderSection = () => {
     switch (currentSection) {
@@ -45,9 +46,9 @@ function App() {
     <div className="App">
       <header>
         <nav>
-        <span className="menu-toggle" onClick={toggleMenu}>☰</span>
+          <span className="menu-toggle" onClick={toggleMenu}>☰</span>
           <ul className={`header-menu ${menuActive ? 'active' : ''}`}>
-            <li><a href="#inicio" onClick={() => setCurrentSection('inicio')}>Inicio</a></li>
+            <li><a href="#inicio" onClick={() => setCurrentSection('inicio')}>Performance Day</a></li>
             <li><a href="#catalogo" onClick={() => setCurrentSection('catalogo')}>Catálogo</a></li>
             <li><a href="#ubicacion" onClick={() => setCurrentSection('ubicacion')}>Ubicación</a></li>
             <li><a href="#contactanos" onClick={() => setCurrentSection('contactanos')}>Contáctanos</a></li>

@@ -15,6 +15,8 @@ public class AutoParte {
     @Column(name = "nombre_original")
     private String nombre_original;
     private String categoria;
+    private String codigo;
+
 
     @Lob
     private byte[] imagen;

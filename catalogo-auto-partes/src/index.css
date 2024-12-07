@@ -47,22 +47,20 @@ footer {
   background-color: #0B4F61;
   color: #fff;
   text-align: center;
-  padding: 10px 0;
-  width: 100%;
-  margin: 0 ;
-  font-size: 22px;
-  position: relative;
+  padding: 20px;
 }
 
-footer p {
-  padding: 0;
-  margin: 0;
-  font-family: Arial, sans-serif;
+footer a.email-link {
+  color: #FFD700; /* Dorado para destacar */
+  text-decoration: none;
+  font-weight: bold;
 }
 
-footer p:hover {
-  color: #ddd;
+footer a.email-link:hover {
+  text-decoration: underline;
+  color: #FFAA00; /* Más claro al pasar el mouse */
 }
+
 .pagination {
   margin-bottom: 20px;
 }

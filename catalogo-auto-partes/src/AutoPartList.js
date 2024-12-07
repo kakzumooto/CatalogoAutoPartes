@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AutoPartList.css';
 
-function AutoPartList({ selectedCategory }) {
+function AutoPartList({ selectedCategory, currentPage, onPageChange }) {
   const [autoParts, setAutoParts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const [selectedItems, setSelectedItems] = useState([]);
-
-  useEffect(() => {
-    setCurrentPage(0);
-  }, [selectedCategory]);
+  const [hoveredCode, setHoveredCode] = useState(null);
+  const [copiedCode, setCopiedCode] = useState(null);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -30,12 +26,13 @@ function AutoPartList({ selectedCategory }) {
     }
   };
 
-  const handleCheckboxChange = (itemId) => {
-    setSelectedItems((prevSelected) =>
-      prevSelected.includes(itemId)
-        ? prevSelected.filter(id => id !== itemId)
-        : [...prevSelected, itemId]
-    );
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        setCopiedCode(text);
+        setTimeout(() => setCopiedCode(null), 2000);
+      })
+      .catch(() => console.error("No se pudo copiar el código."));
   };
 
   return (
@@ -44,16 +41,32 @@ function AutoPartList({ selectedCategory }) {
         {autoParts.map((autoPart) => (
           <div key={autoPart.id} className="auto-part-card">
             <img src={`data:image/jpeg;base64,${autoPart.imagen}`} alt={autoPart.nombre_original} />
-            <h3>{autoPart.nombre_original}</h3>
-
+            <h6>{autoPart.nombre_original}</h6>
+            <h4
+              onMouseEnter={() => setHoveredCode(autoPart.codigo)}
+              onMouseLeave={() => setHoveredCode(null)}
+              onClick={() => copyToClipboard(autoPart.codigo)}
+              style={{ cursor: 'pointer' }}
+            >
+              CÓDIGO: {autoPart.codigo}
+              {hoveredCode === autoPart.codigo && (
+                <span className="tooltip">Click para copiar código</span>
+              )}
+              {copiedCode === autoPart.codigo && (
+                <span className="copied-message">¡Copiado!</span>
+              )}
+            </h4>
           </div>
         ))}
       </div>
       <div className="pagination">
-        <button disabled={currentPage === 0} onClick={() => setCurrentPage((prev) => prev - 1)}>
+        <button disabled={currentPage === 0} onClick={() => onPageChange(currentPage - 1)}>
           Anterior
         </button>
-        <button disabled={currentPage === totalPages - 1} onClick={() => setCurrentPage((prev) => prev + 1)}>
+        <span className="page-indicator">
+          Página {currentPage + 1} de {totalPages}
+        </span>
+        <button disabled={currentPage === totalPages - 1} onClick={() => onPageChange(currentPage + 1)}>
           Siguiente
         </button>
       </div>
