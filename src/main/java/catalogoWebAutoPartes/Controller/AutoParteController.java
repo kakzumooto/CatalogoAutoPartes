@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/autopartes")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.38.151.153")
 public class AutoParteController {
 
     @Autowired
     private AutoParteService autoParteService;
 
     @GetMapping("/categoria")
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://209.38.151.153")
     public Page<AutoParte> getAutoPartesByCategoria(@RequestParam String categoria, Pageable pageable) {
         return autoParteService.findByCategoria(categoria, pageable);
     }
