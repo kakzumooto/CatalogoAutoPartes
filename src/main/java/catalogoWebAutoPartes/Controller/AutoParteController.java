@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/autopartes")
-@CrossOrigin(origins = "http://performanceday.com.mx")
+@CrossOrigin(origins = "https://performanceday.com.mx")
 public class AutoParteController {
 
     @Autowired

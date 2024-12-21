@@ -46,7 +46,7 @@ function App() {
     <div className="App">
       <header>
         <nav>
-          <span className="menu-toggle" onClick={toggleMenu}>☰</span>
+          <span className="menu-toggle" onClick={toggleMenu}>Menú ☰</span>
           <ul className={`header-menu ${menuActive ? 'active' : ''}`}>
             <li><a href="#inicio" onClick={() => setCurrentSection('inicio')}>Performance Day</a></li>
             <li><a href="#catalogo" onClick={() => setCurrentSection('catalogo')}>Catálogo</a></li>

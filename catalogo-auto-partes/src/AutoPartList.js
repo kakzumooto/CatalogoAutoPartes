@@ -16,7 +16,7 @@ function AutoPartList({ selectedCategory, currentPage, onPageChange }) {
 
   const fetchAutoParts = async (category, page) => {
     try {
-      const response = await axios.get(`http://performanceday.com.mx/api/autopartes/categoria`, {
+      const response = await axios.get(`https://performanceday.com.mx/api/autopartes/categoria`, {
         params: { categoria: category, page, size: 12 },
       });
       setAutoParts(response.data.content);

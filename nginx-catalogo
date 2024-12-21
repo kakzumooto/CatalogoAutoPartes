@@ -1,7 +1,7 @@
 server {
-    listen 80;
     server_name performanceday.com.mx www.performanceday.com.mx;
 
+    # Proxy para el backend
     location /api/ {
         proxy_pass http://127.0.0.1:8080;
         proxy_http_version 1.1;
@@ -13,16 +13,19 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
 
-        #add_header Access-Control-Allow-Origin "http://performanceday.com.mx";
-        #add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS";
-        #add_header Access-Control-Allow-Headers "Content-Type, Authorization";
-        #add_header Access-Control-Allow-Credentials "true";
+        # Configuración de CORS
+        add_header Access-Control-Allow-Origin "https://performanceday.com.mx";
+        add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS";
+        add_header Access-Control-Allow-Headers "Content-Type, Authorization";
+        add_header Access-Control-Allow-Credentials "true";
 
-        #if ($request_method = 'OPTIONS') {
-         #   return 204;
-        #}
+        # Respuesta rápida para OPTIONS
+        if ($request_method = 'OPTIONS') {
+            return 204;
+        }
     }
 
+    # Configuración para el frontend
     location / {
         root /opt/catalogo/catalogo-auto-partes/build;
         index index.html;
@@ -34,5 +37,34 @@ server {
     }
 
     error_page 404 /index.html;
+
+    # Configuración SSL
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/performanceday.com.mx/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/performanceday.com.mx/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+    # Cabeceras de seguridad (opcional)
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options DENY;
+    add_header X-XSS-Protection "1; mode=block";
+}
+
+server {
+    # Redirección HTTP a HTTPS
+    if ($host = www.performanceday.com.mx) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = performanceday.com.mx) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen 80;
+    server_name performanceday.com.mx www.performanceday.com.mx;
+    return 404; # managed by Certbot
 }
 
